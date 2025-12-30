@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [records, setRecords] = useState([]);
 
   function fetchData() {
-    axios.get("http://localhost:5000/api/japa", {
+    axios.get("https://japacounter.onrender.com/api/japa", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -44,7 +44,7 @@ export default function Dashboard() {
       return;
     }
     axios.post(
-      "http://localhost:5000/api/japa/add",
+      "https://japacounter.onrender.com/api/japa/add",
       { count: Number(count) },
       {
         headers: {

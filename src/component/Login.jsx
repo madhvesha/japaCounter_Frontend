@@ -19,7 +19,7 @@ export default function Login() {
     toast.error("Email and password are required");
     return;
   }
-    axios.post("http://localhost:5000/api/auth/login", {
+    axios.post("https://japacounter.onrender.com/api/auth/login", {
       email,
       password
     })

@@ -19,7 +19,7 @@ export default function Register() {
 
 
         try {
-            await axios.post("http://localhost:5000/api/auth/register", {
+            await axios.post("https://japacounter.onrender.com/api/auth/register", {
                 name,
                 email,
                 password

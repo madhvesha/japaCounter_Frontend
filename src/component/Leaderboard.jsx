@@ -9,7 +9,7 @@ export default function Leaderboard() {
     const [grandTotal, setGrandTotal] = useState(0);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/japa/leaderboard", {
+        axios.get("https://japacounter.onrender.com/api/japa/leaderboard", {
             headers: {
                 Authorization: `Bearer ${token}`
             }

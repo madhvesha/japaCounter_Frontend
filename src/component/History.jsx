@@ -8,14 +8,24 @@ export default function History() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/japa/history", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(res => setHistory(res.data))
-    .catch(err => console.log(err));
+    axios
+      .get("https://japacounter.onrender.com/api/japa/history", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setHistory(res.data))
+      .catch((err) => console.log(err));
   }, [token]);
+
+  /* ✅ SUM JAPA COUNTS BY DATE */
+  const summedHistory = history.reduce((acc, item) => {
+    if (!acc[item.date]) {
+      acc[item.date] = 0;
+    }
+    acc[item.date] += item.count;
+    return acc;
+  }, {});
 
   return (
     <>
@@ -33,13 +43,13 @@ export default function History() {
             </p>
           ) : (
             <ul className="space-y-2">
-              {history.map((item) => (
+              {Object.entries(summedHistory).map(([date, totalCount]) => (
                 <li
-                  key={item._id}
+                  key={date}
                   className="flex justify-between bg-orange-100 p-2 rounded"
                 >
-                  <span>{item.date}</span>
-                  <span className="font-bold">{item.count}</span>
+                  <span className="font-medium">{date}</span>
+                  <span className="font-bold">{totalCount}</span>
                 </li>
               ))}
             </ul>
