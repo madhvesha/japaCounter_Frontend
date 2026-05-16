@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 export default function Dashboard() {
   const { token } = useContext(AuthContext);
   const [count, setCount] = useState("");
+  const [japaType, setJapaType] = useState("");
   const [records, setRecords] = useState([]);
 
   function fetchData() {
@@ -39,12 +40,12 @@ export default function Dashboard() {
   };
 
   function addJapa() {
-    if (!count || count <= 0) {
+    if (!count || count <= 0 || !japaType) {
       toast.error("Please enter a valid count");
       return;
     }
     axios.post("https://japacounter.onrender.com/api/japa/add",
-      { count: Number(count) },
+      { count: Number(count), japaType },
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -54,6 +55,7 @@ export default function Dashboard() {
       .then(() => {
         toast.success("Japa added successfully 🙏");
         setCount("");
+        setJapaType("");
         fetchData();
       })
       .catch((err) => {
@@ -62,7 +64,17 @@ export default function Dashboard() {
       })
 
   };
+  const ramaTotal = records
+    .filter(item => item.japaType === "Rama Japa")
+    .reduce((a, b) => a + b.count, 0);
 
+  const gayathriTotal = records
+    .filter(item => item.japaType === "Gayathri Japa")
+    .reduce((a, b) => a + b.count, 0);
+
+  const vishnuTotal = records
+    .filter(item => item.japaType === "Vishnu Sahasranama")
+    .reduce((a, b) => a + b.count, 0);
   const total = records.reduce((a, b) => a + b.count, 0);
 
   return (
@@ -101,6 +113,8 @@ export default function Dashboard() {
             {/* Select Japa Type */}
 
             <select
+              value={japaType}
+              onChange={(e) => setJapaType(e.target.value)}
               className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
             >
               <option className="bg-slate-900 text-white">
@@ -144,7 +158,39 @@ export default function Dashboard() {
           </div>
 
           {/* Total Count */}
+          <div className="grid grid-cols-1 gap-4">
 
+            <div className="bg-white/10 p-4 rounded-2xl text-center">
+              <p className="text-slate-300">
+                Rama Japa
+              </p>
+
+              <h2 className="text-3xl font-bold text-purple-400">
+                {ramaTotal}
+              </h2>
+            </div>
+
+            <div className="bg-white/10 p-4 rounded-2xl text-center">
+              <p className="text-slate-300">
+                Gayathri Japa
+              </p>
+
+              <h2 className="text-3xl font-bold text-pink-400">
+                {gayathriTotal}
+              </h2>
+            </div>
+
+            <div className="bg-white/10 p-4 rounded-2xl text-center">
+              <p className="text-slate-300">
+                Vishnu Sahasranama
+              </p>
+
+              <h2 className="text-3xl font-bold text-indigo-400">
+                {vishnuTotal}
+              </h2>
+            </div>
+
+          </div>
           <div className="bg-white/10 border border-white/10 rounded-2xl py-6 text-center shadow-lg mb-6">
 
             <p className="text-slate-300 text-sm mb-2">

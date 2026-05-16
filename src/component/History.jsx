@@ -20,11 +20,25 @@ export default function History() {
 
   /* ✅ SUM JAPA COUNTS BY DATE */
   const summedHistory = history.reduce((acc, item) => {
+
     if (!acc[item.date]) {
-      acc[item.date] = 0;
+
+      acc[item.date] = {
+        total: 0,
+        japas: []
+      };
+
     }
-    acc[item.date] += item.count;
+
+    acc[item.date].total += item.count;
+
+    acc[item.date].japas.push({
+      type: item.japaType,
+      count: item.count
+    });
+
     return acc;
+
   }, {});
 
   return (
@@ -73,7 +87,7 @@ export default function History() {
 
             <ul className="space-y-5">
 
-              {Object.entries(summedHistory).map(([date, totalCount]) => (
+              {Object.entries(summedHistory).map(([date, data]) => (
 
                 <li
                   key={date}
@@ -93,6 +107,28 @@ export default function History() {
                     </h3>
 
                   </div>
+                  <div className="flex flex-col gap-2">
+
+                    {data.japas.map((japa, index) => (
+
+                      <div
+                        key={index}
+                        className="bg-white/5 px-4 py-2 rounded-xl"
+                      >
+
+                        <p className="text-slate-300 text-sm">
+                          {japa.type}
+                        </p>
+
+                        <h4 className="text-lg font-semibold text-purple-400">
+                          {japa.count}
+                        </h4>
+
+                      </div>
+
+                    ))}
+
+                  </div>
 
                   {/* Count */}
 
@@ -103,7 +139,7 @@ export default function History() {
                     </p>
 
                     <h3 className="text-2xl font-bold text-white">
-                      {totalCount}
+                      {data.total}
                     </h3>
 
                   </div>
