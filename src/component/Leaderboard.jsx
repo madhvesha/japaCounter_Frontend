@@ -80,10 +80,6 @@ export default function Leaderboard() {
                                                     Vishnu
                                                 </th>
 
-                                                <th>
-                                                    Total
-                                                </th>
-
                                             </tr>
 
                                         </thead>
@@ -139,13 +135,6 @@ export default function Leaderboard() {
                                                     }
 
                                                 </td>
-
-                                                {/* Total */}
-
-                                                <td className="py-4 rounded-r-2xl text-2xl font-bold text-yellow-400">
-                                                    {user.totalJapa}
-                                                </td>
-
                                             </tr>
 
                                         </tbody>

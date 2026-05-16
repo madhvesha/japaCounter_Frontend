@@ -75,7 +75,7 @@ export default function Dashboard() {
   const vishnuTotal = records
     .filter(item => item.japaType === "Vishnu Sahasranama")
     .reduce((a, b) => a + b.count, 0);
-  const total = records.reduce((a, b) => a + b.count, 0);
+  // const total = records.reduce((a, b) => a + b.count, 0);
 
   return (
     <>
@@ -189,17 +189,6 @@ export default function Dashboard() {
                 {vishnuTotal}
               </h2>
             </div>
-
-          </div>
-          <div className="bg-white/10 border border-white/10 rounded-2xl py-6 text-center shadow-lg mb-6">
-
-            <p className="text-slate-300 text-sm mb-2">
-              Total Japa
-            </p>
-
-            <h2 className="text-5xl font-bold text-purple-400">
-              {total}
-            </h2>
 
           </div>
 

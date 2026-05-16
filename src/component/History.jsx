@@ -173,20 +173,6 @@ export default function History() {
 
                   </div>
 
-                  {/* Count */}
-
-                  <div className="bg-gradient-to-r from-purple-600 to-pink-500 px-5 py-3 rounded-2xl shadow-lg text-center min-w-[120px]">
-
-                    <p className="text-white/80 text-sm">
-                      Total Count
-                    </p>
-
-                    <h3 className="text-2xl font-bold text-white">
-                      {data.total}
-                    </h3>
-
-                  </div>
-
                 </li>
 
               ))}
