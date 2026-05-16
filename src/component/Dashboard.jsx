@@ -72,41 +72,80 @@ export default function Dashboard() {
 
       {/* Page Content */}
 
-      <div className="min-h-screen bg-orange-50 p-4">
-        <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-          <div className="flex justify-between mb-4">
-            <h1 className="text-xl font-bold">Japa Dashboard</h1>
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 p-4 flex items-center justify-center">
+
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl text-white">
+
+          {/* Heading */}
+
+          <div className="text-center mb-8">
+
+            <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-5xl shadow-[0_0_50px_rgba(168,85,247,0.5)] mb-5">
+              📿
+            </div>
+
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Japa Dashboard
+            </h1>
+
+            <p className="text-slate-300 mt-3">
+              Track your chanting progress daily
+            </p>
 
           </div>
 
-          <div className="flex gap-2">
+          {/* Input Section */}
+
+          <div className="flex gap-3 mb-6">
+
             <input
               type="number"
-              className="border p-2 w-full"
+              className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white placeholder-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
               placeholder="Enter count"
               value={count}
               onChange={e => setCount(e.target.value)}
             />
+
             <button
               onClick={addJapa}
-              className="bg-orange-500 text-white px-4 rounded"
+              className="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition-all duration-300 px-6 rounded-2xl font-semibold shadow-lg"
             >
               Add
             </button>
+
           </div>
 
-          <div className="mt-4 text-center font-bold">
-            Total Japa: {total}
+          {/* Total Count */}
+
+          <div className="bg-white/10 border border-white/10 rounded-2xl py-6 text-center shadow-lg mb-6">
+
+            <p className="text-slate-300 text-sm mb-2">
+              Total Japa
+            </p>
+
+            <h2 className="text-5xl font-bold text-purple-400">
+              {total}
+            </h2>
+
           </div>
-          <div className="mt-4 text-center font-bold">
-            <button onClick={showHistory} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-lg shadow transition duration-200">
-              History
+
+          {/* History Button */}
+
+          <div className="text-center">
+
+            <button
+              onClick={showHistory}
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-[1.02] transition-all duration-300 text-white font-semibold px-6 py-4 rounded-2xl shadow-lg"
+            >
+              View History
             </button>
+
           </div>
+
         </div>
+
       </div>
 
     </>
   );
-
 }
