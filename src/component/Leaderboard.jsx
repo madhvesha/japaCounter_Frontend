@@ -43,23 +43,27 @@ export default function Leaderboard() {
                         </h2>
                     </div>
 
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 list-none">
 
                         {leaders.map((user, index) => (
 
                             <li
                                 key={index}
-                                className="bg-white/10 border border-white/10 hover:border-purple-500/40 backdrop-blur-lg p-4 rounded-2xl transition-all duration-300 hover:scale-[1.01]"
+                                className="bg-white/10 border border-white/10 hover:border-purple-500/40 backdrop-blur-lg p-6 rounded-2xl transition-all duration-300 hover:scale-[1.01] overflow-x-auto"
                             >
 
-                                <div className="grid grid-cols-5 gap-4 items-center text-center">
+                                <div className="grid grid-cols-5 gap-6 items-center text-center w-full">
 
                                     {/* Name */}
 
-                                    <div>
+                                    <div className="min-w-[140px]">
 
-                                        <p className="font-bold text-lg text-white">
-                                            #{index + 1} {user.name}
+                                        <p className="font-bold text-2xl text-white leading-tight">
+                                            #{index}
+                                        </p>
+
+                                        <p className="font-semibold text-xl text-white mt-1 break-words">
+                                            {user.name}
                                         </p>
 
                                     </div>
@@ -120,20 +124,6 @@ export default function Leaderboard() {
                                                 )?.count || 0
                                             }
 
-                                        </h3>
-
-                                    </div>
-
-                                    {/* Total */}
-
-                                    <div>
-
-                                        <p className="text-sm text-slate-300">
-                                            Total
-                                        </p>
-
-                                        <h3 className="text-2xl font-bold text-yellow-400">
-                                            {user.totalJapa}
                                         </h3>
 
                                     </div>

@@ -107,26 +107,69 @@ export default function History() {
                     </h3>
 
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="overflow-x-auto w-full">
 
-                    {data.japas.map((japa, index) => (
+                    <table className="w-full text-center border-separate border-spacing-y-3">
 
-                      <div
-                        key={index}
-                        className="bg-white/5 px-4 py-2 rounded-xl"
-                      >
+                      <thead>
 
-                        <p className="text-slate-300 text-sm">
-                          {japa.type}
-                        </p>
+                        <tr className="text-slate-300 text-sm">
 
-                        <h4 className="text-lg font-semibold text-purple-400">
-                          {japa.count}
-                        </h4>
+                          <th className="pb-2">
+                            Rama Japa
+                          </th>
 
-                      </div>
+                          <th className="pb-2">
+                            Gayathri Japa
+                          </th>
 
-                    ))}
+                          <th className="pb-2">
+                            Vishnu Sahasranama
+                          </th>
+
+                        </tr>
+
+                      </thead>
+
+                      <tbody>
+
+                        <tr className="bg-white/5">
+
+                          <td className="py-4 rounded-l-2xl text-2xl font-bold text-purple-400">
+
+                            {
+                              data.japas.find(
+                                j => j.type === "Rama Japa"
+                              )?.count || 0
+                            }
+
+                          </td>
+
+                          <td className="py-4 text-2xl font-bold text-pink-400">
+
+                            {
+                              data.japas.find(
+                                j => j.type === "Gayathri Japa"
+                              )?.count || 0
+                            }
+
+                          </td>
+
+                          <td className="py-4 rounded-r-2xl text-2xl font-bold text-indigo-400">
+
+                            {
+                              data.japas.find(
+                                j => j.type === "Vishnu Sahasranama"
+                              )?.count || 0
+                            }
+
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+
+                    </table>
 
                   </div>
 
