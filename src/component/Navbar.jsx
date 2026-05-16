@@ -14,7 +14,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-gradient-to-r from-slate-950 via-purple-950 to-slate-900 border-b border-white/10 px-4 md:px-6 py-4 text-white shadow-lg sticky top-0 z-50">
+        <nav className="w-full bg-gradient-to-r from-slate-950 via-purple-950 to-slate-900 border-b border-white/10 px-4 md:px-6 py-4 text-white shadow-lg sticky top-0 z-50">
 
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-4">
 
