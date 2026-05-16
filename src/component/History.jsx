@@ -95,7 +95,7 @@ export default function History() {
                 >
 
                   {/* Date */}
-{/* 
+                  {/* 
                   <div>
 
                     <p className="text-slate-400 text-sm">
@@ -115,7 +115,7 @@ export default function History() {
 
                         <tr className="text-slate-300 text-sm">
                           <th className="pb-2">
-                            Chant Date 
+                            Chant Date
                           </th>
 
                           <th className="pb-2">
@@ -138,10 +138,10 @@ export default function History() {
 
                         <tr className="bg-white/5">
 
-                          <td className="text-xl font-semibold text-white">
+                          <td className="py-4 rounded-l-2xl text-xl font-semibold text-white">
                             {date}
                           </td>
-                          <td className="py-4 rounded-l-2xl text-2xl font-bold text-purple-400">
+                          <td className="py-4 text-2xl font-bold text-purple-400">
 
                             {
                               data.japas.find(
