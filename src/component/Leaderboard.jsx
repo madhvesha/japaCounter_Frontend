@@ -6,7 +6,15 @@ import Navbar from "./Navbar";
 export default function Leaderboard() {
     const { token } = useContext(AuthContext);
     const [leaders, setLeaders] = useState([]);
-    const [grandTotal, setGrandTotal] = useState(0);
+    const totalGayathri = leaders.reduce((total, user) => {
+
+        const gayathri = user.japas.find(
+            j => j.type === "Gayathri Japa"
+        )?.count || 0;
+
+        return total + gayathri;
+
+    }, 0);
 
     useEffect(() => {
         axios.get("https://japacounter.onrender.com/api/japa/leaderboard", {
@@ -17,7 +25,7 @@ export default function Leaderboard() {
             .then(res => {
                 console.log(res.data)
                 setLeaders(res.data.leaderboard);
-                setGrandTotal(res.data.grandTotal);
+                // setGrandTotal(res.data.grandTotal);
             })
             .catch(err => console.log(err));
     }, [token]);
@@ -35,116 +43,132 @@ export default function Leaderboard() {
 
                     <div className="text-center bg-gradient-to-r from-purple-600 to-pink-500 rounded-2xl py-4 px-4 font-bold text-white shadow-lg mb-6">
                         <p className="text-sm text-white/80">
-                            Total Japa by All Users
+                            Total Gyathri Japa by All Users
                         </p>
 
                         <h2 className="text-3xl mt-1">
-                            {grandTotal}
+                            {totalGayathri}
                         </h2>
                     </div>
 
                     <ul className="space-y-4 list-none">
 
-                        {leaders.map((user, index) => (
+                        {leaders
+                            .sort((a, b) => {
 
-                            <li
-                                key={index}
-                                className="bg-white/10 border border-white/10 hover:border-purple-500/40 backdrop-blur-lg p-6 rounded-2xl transition-all duration-300 hover:scale-[1.01] overflow-x-auto"
-                            >
+                                const aGayathri =
+                                    a.japas.find(
+                                        j => j.type === "Gayathri Japa"
+                                    )?.count || 0;
 
-                                <div className="overflow-x-auto">
+                                const bGayathri =
+                                    b.japas.find(
+                                        j => j.type === "Gayathri Japa"
+                                    )?.count || 0;
 
-                                    <table className="w-full text-center border-separate border-spacing-y-4">
+                                return bGayathri - aGayathri;
 
-                                        <thead>
+                            })
+                            .map((user, index) => (
 
-                                            <tr className="text-slate-300 text-sm">
+                                <li
+                                    key={index}
+                                    className="bg-white/10 border border-white/10 hover:border-purple-500/40 backdrop-blur-lg p-6 rounded-2xl transition-all duration-300 hover:scale-[1.01] overflow-x-auto"
+                                >
 
-                                                <th>
-                                                    Rank
-                                                </th>
+                                    <div className="overflow-x-auto">
 
-                                                <th>
-                                                    Name
-                                                </th>
+                                        <table className="w-full text-center border-separate border-spacing-y-4">
 
-                                                <th>
-                                                    Rama
-                                                </th>
+                                            <thead>
 
-                                                <th>
-                                                    Gayathri
-                                                </th>
+                                                <tr className="text-slate-300 text-sm">
 
-                                                <th>
-                                                    Vishnu
-                                                </th>
+                                                    <th>
+                                                        Rank
+                                                    </th>
 
-                                            </tr>
+                                                    <th>
+                                                        Name
+                                                    </th>
 
-                                        </thead>
+                                                    <th>
+                                                        Rama
+                                                    </th>
 
-                                        <tbody>
+                                                    <th>
+                                                        Gayathri
+                                                    </th>
 
-                                            <tr className="bg-white/5">
+                                                    <th>
+                                                        Vishnu
+                                                    </th>
 
-                                                {/* Rank */}
+                                                </tr>
 
-                                                <td className="py-4 rounded-l-2xl text-2xl font-bold text-white">
-                                                    #{index + 1}
-                                                </td>
+                                            </thead>
 
-                                                {/* Name */}
+                                            <tbody>
 
-                                                <td className="py-4 text-xl font-semibold text-white px-4 whitespace-nowrap">
-                                                    {user.name}
-                                                </td>
+                                                <tr className="bg-white/5">
 
-                                                {/* Rama */}
+                                                    {/* Rank */}
 
-                                                <td className="py-4 text-xl font-bold text-purple-400">
+                                                    <td className="py-4 rounded-l-2xl text-2xl font-bold text-white">
+                                                        #{index + 1}
+                                                    </td>
 
-                                                    {
-                                                        user.japas.find(
-                                                            j => j.type === "Rama Japa"
-                                                        )?.count || 0
-                                                    }
+                                                    {/* Name */}
 
-                                                </td>
+                                                    <td className="py-4 text-xl font-semibold text-white px-4 whitespace-nowrap">
+                                                        {user.name}
+                                                    </td>
 
-                                                {/* Gayathri */}
+                                                    {/* Rama */}
 
-                                                <td className="py-4 text-xl font-bold text-pink-400">
+                                                    <td className="py-4 text-xl font-bold text-purple-400">
 
-                                                    {
-                                                        user.japas.find(
-                                                            j => j.type === "Gayathri Japa"
-                                                        )?.count || 0
-                                                    }
+                                                        {
+                                                            user.japas.find(
+                                                                j => j.type === "Rama Japa"
+                                                            )?.count || 0
+                                                        }
 
-                                                </td>
+                                                    </td>
 
-                                                {/* Vishnu */}
+                                                    {/* Gayathri */}
 
-                                                <td className="py-4 text-xl font-bold text-indigo-400">
+                                                    <td className="py-4 text-xl font-bold text-pink-400">
 
-                                                    {
-                                                        user.japas.find(
-                                                            j => j.type === "Vishnu Sahasranama"
-                                                        )?.count || 0
-                                                    }
+                                                        {
+                                                            user.japas.find(
+                                                                j => j.type === "Gayathri Japa"
+                                                            )?.count || 0
+                                                        }
 
-                                                </td>
-                                            </tr>
+                                                    </td>
 
-                                        </tbody>
+                                                    {/* Vishnu */}
 
-                                    </table>
+                                                    <td className="py-4 text-xl font-bold text-indigo-400">
 
-                                </div>
+                                                        {
+                                                            user.japas.find(
+                                                                j => j.type === "Vishnu Sahasranama"
+                                                            )?.count || 0
+                                                        }
 
-                            </li>
-                        ))}
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                </li>
+                            ))}
 
                     </ul>
 
