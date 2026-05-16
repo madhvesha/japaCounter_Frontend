@@ -73,10 +73,51 @@
 //   );
 // }
 
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Login() {
+
+  const { login } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  function handleLogin(e) {
+
+    e.preventDefault();
+
+    if (!email || !password) {
+      toast.error("Email and password are required");
+      return;
+    }
+
+    axios.post("https://japacounter.onrender.com/api/auth/login", {
+      email,
+      password
+    })
+      .then((res) => {
+
+        toast.success(`Welcome ${res.data.name} 🙏`);
+
+        login(res.data.token, res.data.name);
+
+        navigate("/dashboard");
+
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Invalid Credentials");
+      });
+  }
+
   return (
+
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 px-4">
 
       <div className="w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8">
@@ -101,9 +142,10 @@ export default function Login() {
 
         {/* Form */}
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleLogin}>
 
           <div>
+
             <label className="block text-slate-300 mb-2 text-sm">
               Email Address
             </label>
@@ -111,11 +153,15 @@ export default function Login() {
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white placeholder-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
             />
+
           </div>
 
           <div>
+
             <label className="block text-slate-300 mb-2 text-sm">
               Password
             </label>
@@ -123,19 +169,24 @@ export default function Login() {
             <input
               type="password"
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white placeholder-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
             />
+
           </div>
 
           {/* Forgot Password */}
 
           <div className="flex justify-end">
+
             <button
               type="button"
               className="text-sm text-purple-400 hover:text-purple-300 transition"
             >
               Forgot Password?
             </button>
+
           </div>
 
           {/* Login Button */}
@@ -152,13 +203,16 @@ export default function Login() {
         {/* Register */}
 
         <p className="text-center text-slate-300 mt-8">
+
           Don’t have an account?{" "}
+
           <Link
             to="/register"
             className="text-purple-400 hover:text-pink-400 font-semibold transition"
           >
             Register
           </Link>
+
         </p>
 
       </div>
