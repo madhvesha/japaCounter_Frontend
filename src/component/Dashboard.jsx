@@ -43,8 +43,7 @@ export default function Dashboard() {
       toast.error("Please enter a valid count");
       return;
     }
-    axios.post(
-      "https://japacounter.onrender.com/api/japa/add",
+    axios.post("https://japacounter.onrender.com/api/japa/add",
       { count: Number(count) },
       {
         headers: {

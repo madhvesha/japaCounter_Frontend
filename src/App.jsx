@@ -18,7 +18,7 @@ export default function App() {
       <Routes>
         {/* Default route */}
         <Route path="/" element={token ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-
+        
         {/* Public Route */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
