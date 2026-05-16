@@ -150,7 +150,7 @@ export default function Leaderboard() {
 
                                                     {/* Vishnu */}
 
-                                                    <td className="py-4 text-xl font-bold text-indigo-400">
+                                                    <td className="py-4 rounded-l-2xl text-xl font-bold text-indigo-400">
 
                                                         {
                                                             user.japas.find(
