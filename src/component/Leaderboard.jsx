@@ -15,6 +15,7 @@ export default function Leaderboard() {
             }
         })
             .then(res => {
+                console.log(res.data)
                 setLeaders(res.data.leaderboard);
                 setGrandTotal(res.data.grandTotal);
             })
