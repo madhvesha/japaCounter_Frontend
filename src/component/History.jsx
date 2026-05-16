@@ -95,7 +95,7 @@ export default function History() {
                 >
 
                   {/* Date */}
-
+{/* 
                   <div>
 
                     <p className="text-slate-400 text-sm">
@@ -106,7 +106,7 @@ export default function History() {
                       {date}
                     </h3>
 
-                  </div>
+                  </div> */}
                   <div className="overflow-x-auto w-full">
 
                     <table className="w-full text-center border-separate border-spacing-y-3">
@@ -114,6 +114,9 @@ export default function History() {
                       <thead>
 
                         <tr className="text-slate-300 text-sm">
+                          <th className="pb-2">
+                            Chant Date 
+                          </th>
 
                           <th className="pb-2">
                             Rama Japa
@@ -135,6 +138,9 @@ export default function History() {
 
                         <tr className="bg-white/5">
 
+                          <td className="text-xl font-semibold text-white">
+                            {date}
+                          </td>
                           <td className="py-4 rounded-l-2xl text-2xl font-bold text-purple-400">
 
                             {
