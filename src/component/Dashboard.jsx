@@ -96,22 +96,50 @@ export default function Dashboard() {
 
           {/* Input Section */}
 
-          <div className="flex gap-3 mb-6">
+          <div className="space-y-4 mb-6">
 
-            <input
-              type="number"
-              className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white placeholder-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
-              placeholder="Enter count"
-              value={count}
-              onChange={e => setCount(e.target.value)}
-            />
+            {/* Select Japa Type */}
 
-            <button
-              onClick={addJapa}
-              className="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition-all duration-300 px-6 rounded-2xl font-semibold shadow-lg"
+            <select
+              className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
             >
-              Add
-            </button>
+              <option className="bg-slate-900 text-white">
+                Select Japa Type
+              </option>
+
+              <option className="bg-slate-900 text-white">
+                Rama Japa
+              </option>
+
+              <option className="bg-slate-900 text-white">
+                Gayathri Japa
+              </option>
+
+              <option className="bg-slate-900 text-white">
+                Vishnu Sahasranama
+              </option>
+            </select>
+
+            {/* Count Input + Button */}
+
+            <div className="flex gap-3">
+
+              <input
+                type="number"
+                className="w-full px-4 py-4 rounded-2xl bg-white/10 border border-white/10 text-white placeholder-slate-400 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition"
+                placeholder="Enter count"
+                value={count}
+                onChange={e => setCount(e.target.value)}
+              />
+
+              <button
+                onClick={addJapa}
+                className="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition-all duration-300 px-6 rounded-2xl font-semibold shadow-lg"
+              >
+                Add
+              </button>
+
+            </div>
 
           </div>
 
