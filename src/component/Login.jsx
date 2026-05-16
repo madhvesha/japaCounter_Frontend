@@ -103,9 +103,19 @@ export default function Login() {
     })
       .then((res) => {
 
-        toast.success(`Welcome ${res.data.name} 🙏`);
+        console.log(res.data);
 
-        login(res.data.token, res.data.name);
+        const token = res.data.token;
+        const name = res.data.user?.name || res.data.name;
+
+        if (!token) {
+          toast.error("Token not received");
+          return;
+        }
+
+        login(token, name);
+
+        toast.success(`Welcome ${name} 🙏`);
 
         navigate("/dashboard");
 
