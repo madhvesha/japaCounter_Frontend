@@ -1,114 +1,77 @@
-// import { useContext } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import { AuthContext } from "../context/AuthContext";
-// import toast from "react-hot-toast";
-
-// export default function Navbar() {
-//     const { name, logout } = useContext(AuthContext);
-//     const navigate = useNavigate();
-//     // console.log("AuthContext:", useContext(AuthContext));
-//     const handleLogout = () => {
-//         logout();
-//         toast.success("Logged out successfully");
-//         navigate("/login");
-//     };
-
-//     return (
-//         <nav className="bg-orange-500 text-white px-6 py-3 flex justify-between items-center">
-//             <h1 className="font-bold text-lg">🧘 Japa Counter</h1>
-//             {/* 👋 Welcome message */}
-//             {name && (
-//                 <span className="font-semibold">
-//                     Welcome, {name} 🙏
-//                 </span>
-//             )}
-
-//             <div className="flex gap-4 items-center">
-//                 <Link to="/dashboard" className="no-underline hover:underline">
-//                     Dashboard
-//                 </Link>
-//                 <Link to="/history" className="no-underline hover:underline">
-//                     History
-//                 </Link>
-
-//                 <Link to="/leaderboard" className="no-underline hover:underline">
-//                     Leaderboard
-//                 </Link>
-
-//                 <button
-//                     onClick={handleLogout}
-//                     className="bg-white text-orange-500 px-3 py-1 rounded font-semibold"
-//                 >
-//                     Logout
-//                 </button>
-//             </div>
-//         </nav>
-//     );
-// }
-
-import { Link, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
-    const location = useLocation();
-
-    const navLinks = [
-        { name: "Dashboard", path: "/dashboard" },
-        { name: "History", path: "/history" },
-        { name: "Leaderboard", path: "/leaderboard" },
-    ];
+    const { name, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+    // console.log("AuthContext:", useContext(AuthContext));
+    const handleLogout = () => {
+        logout();
+        toast.success("Logged out successfully");
+        navigate("/login");
+    };
 
     return (
-        <nav className="w-full bg-black/20 backdrop-blur-xl border-b border-white/10 px-6 py-4 shadow-lg sticky top-0 z-50">
+        <nav className="bg-black/20 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex justify-between items-center text-white shadow-lg sticky top-0 z-50">
 
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
+            {/* Logo */}
 
-                {/* Logo */}
+            <div className="flex items-center gap-3">
 
-                <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(168,85,247,0.5)]">
+                    🧘
+                </div>
 
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-2xl shadow-[0_0_20px_rgba(168,85,247,0.5)]">
-                        ॐ
-                    </div>
+                <div>
 
-                    <div>
-                        <h1 className="text-2xl font-bold text-white">
-                            JapaCounter
-                        </h1>
+                    <h1 className="font-bold text-2xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        Japa Counter
+                    </h1>
 
-                        <p className="text-xs text-slate-300">
-                            Spiritual Progress Tracker
-                        </p>
-                    </div>
+                    {/* 👋 Welcome message */}
+
+                    {name && (
+                        <span className="text-sm text-slate-300">
+                            Welcome, {name} 🙏
+                        </span>
+                    )}
 
                 </div>
 
-                {/* Navigation Links */}
+            </div>
 
-                <div className="hidden md:flex items-center gap-4">
+            {/* Navigation Links */}
 
-                    {navLinks.map((link) => {
-                        const isActive = location.pathname === link.path;
+            <div className="flex gap-4 items-center">
 
-                        return (
-                            <Link
-                                key={link.name}
-                                to={link.path}
-                                className={`px-5 py-2 rounded-xl font-medium transition-all duration-300 ${isActive
-                                        ? "bg-purple-600 text-white shadow-lg"
-                                        : "text-slate-300 hover:bg-white/10 hover:text-white"
-                                    }`}
-                            >
-                                {link.name}
-                            </Link>
-                        );
-                    })}
+                <Link
+                    to="/dashboard"
+                    className="px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-300 text-slate-200 hover:text-white no-underline"
+                >
+                    Dashboard
+                </Link>
 
-                </div>
+                <Link
+                    to="/history"
+                    className="px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-300 text-slate-200 hover:text-white no-underline"
+                >
+                    History
+                </Link>
 
-                {/* Mobile Menu Button */}
+                <Link
+                    to="/leaderboard"
+                    className="px-4 py-2 rounded-xl hover:bg-white/10 transition-all duration-300 text-slate-200 hover:text-white no-underline"
+                >
+                    Leaderboard
+                </Link>
 
-                <button className="md:hidden text-white text-2xl">
-                    ☰
+                <button
+                    onClick={handleLogout}
+                    className="bg-gradient-to-r from-red-500 to-pink-500 hover:scale-105 transition-all duration-300 px-5 py-2 rounded-xl font-semibold shadow-lg"
+                >
+                    Logout
                 </button>
 
             </div>
@@ -116,3 +79,4 @@ export default function Navbar() {
         </nav>
     );
 }
+
