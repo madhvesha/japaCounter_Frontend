@@ -52,81 +52,105 @@ export default function Leaderboard() {
                                 className="bg-white/10 border border-white/10 hover:border-purple-500/40 backdrop-blur-lg p-6 rounded-2xl transition-all duration-300 hover:scale-[1.01] overflow-x-auto"
                             >
 
-                                <div className="grid grid-cols-5 gap-6 items-center text-center w-full">
+                                <div className="overflow-x-auto">
 
-                                    {/* Name */}
+                                    <table className="w-full text-center border-separate border-spacing-y-4">
 
-                                    <div className="min-w-[140px]">
+                                        <thead>
 
-                                        <p className="font-bold text-2xl text-white leading-tight">
-                                            #{index}
-                                        </p>
+                                            <tr className="text-slate-300 text-sm">
 
-                                        <p className="font-semibold text-xl text-white mt-1 break-words">
-                                            {user.name}
-                                        </p>
+                                                <th>
+                                                    Rank
+                                                </th>
 
-                                    </div>
+                                                <th>
+                                                    Name
+                                                </th>
 
-                                    {/* Rama */}
+                                                <th>
+                                                    Rama
+                                                </th>
 
-                                    <div>
+                                                <th>
+                                                    Gayathri
+                                                </th>
 
-                                        <p className="text-sm text-slate-300">
-                                            Rama Japa
-                                        </p>
+                                                <th>
+                                                    Vishnu
+                                                </th>
 
-                                        <h3 className="text-xl font-bold text-purple-400">
+                                                <th>
+                                                    Total
+                                                </th>
 
-                                            {
-                                                user.japas.find(
-                                                    j => j.type === "Rama Japa"
-                                                )?.count || 0
-                                            }
+                                            </tr>
 
-                                        </h3>
+                                        </thead>
 
-                                    </div>
+                                        <tbody>
 
-                                    {/* Gayathri */}
+                                            <tr className="bg-white/5">
 
-                                    <div>
+                                                {/* Rank */}
 
-                                        <p className="text-sm text-slate-300">
-                                            Gayathri Japa
-                                        </p>
+                                                <td className="py-4 rounded-l-2xl text-2xl font-bold text-white">
+                                                    #{index + 1}
+                                                </td>
 
-                                        <h3 className="text-xl font-bold text-pink-400">
+                                                {/* Name */}
 
-                                            {
-                                                user.japas.find(
-                                                    j => j.type === "Gayathri Japa"
-                                                )?.count || 0
-                                            }
+                                                <td className="py-4 text-xl font-semibold text-white px-4 whitespace-nowrap">
+                                                    {user.name}
+                                                </td>
 
-                                        </h3>
+                                                {/* Rama */}
 
-                                    </div>
+                                                <td className="py-4 text-xl font-bold text-purple-400">
 
-                                    {/* Vishnu */}
+                                                    {
+                                                        user.japas.find(
+                                                            j => j.type === "Rama Japa"
+                                                        )?.count || 0
+                                                    }
 
-                                    <div>
+                                                </td>
 
-                                        <p className="text-sm text-slate-300">
-                                            Vishnu Sahasranama
-                                        </p>
+                                                {/* Gayathri */}
 
-                                        <h3 className="text-xl font-bold text-indigo-400">
+                                                <td className="py-4 text-xl font-bold text-pink-400">
 
-                                            {
-                                                user.japas.find(
-                                                    j => j.type === "Vishnu Sahasranama"
-                                                )?.count || 0
-                                            }
+                                                    {
+                                                        user.japas.find(
+                                                            j => j.type === "Gayathri Japa"
+                                                        )?.count || 0
+                                                    }
 
-                                        </h3>
+                                                </td>
 
-                                    </div>
+                                                {/* Vishnu */}
+
+                                                <td className="py-4 text-xl font-bold text-indigo-400">
+
+                                                    {
+                                                        user.japas.find(
+                                                            j => j.type === "Vishnu Sahasranama"
+                                                        )?.count || 0
+                                                    }
+
+                                                </td>
+
+                                                {/* Total */}
+
+                                                <td className="py-4 rounded-r-2xl text-2xl font-bold text-yellow-400">
+                                                    {user.totalJapa}
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
 
                                 </div>
 
